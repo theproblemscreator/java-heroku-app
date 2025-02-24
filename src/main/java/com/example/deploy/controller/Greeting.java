@@ -20,27 +20,27 @@ import com.example.deploy.service.EmployeeService;
 public class Greeting {
 	@Autowired
 	private EmployeeService employeeService;
-	
+
 	@GetMapping("/records")
-	public List<Employee> getAllRecords(){
+	public List<Employee> getAllRecords() {
 		return employeeService.getAllRecords();
-		
+
 	}
-	
+
 	@PostMapping("/save")
 	public Employee saveRecord(@RequestBody Employee emp) {
 		return employeeService.saveRecord(emp);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id){
+	public void deleteUser(@PathVariable Long id) {
 		employeeService.deleteUser(id);
 	}
-	
+
 	@PutMapping("/{id}")
-	public Employee updateEmployee(@RequestBody Employee emp , @PathVariable Long id) {
-		
+	public Employee updateEmployee(@RequestBody Employee emp, @PathVariable Long id) {
+
 		return employeeService.updateEmployee(id, emp);
-		
+
 	}
 }
