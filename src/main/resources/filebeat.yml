@@ -1,0 +1,36 @@
+# ============================ Filebeat Inputs =============================
+
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      C:\Users\Kishor\Downloads\deploy\deploy\springboot.log  # Replace with actual log file path
+    ignore_older: 24h
+    scan_frequency: 10s
+    harvester_buffer_size: 16384
+
+# ======================= Elasticsearch Output ========================
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]  # Elasticsearch URL
+  username: "elastic"               # Default username
+  password: "your-password"         # Replace with your actual password
+  indices:
+    - index: "filebeat-logs"
+
+# ======================= (Optional) Logstash Output ========================
+# If using Logstash, disable Elasticsearch output and enable this:
+# output.logstash:
+#   hosts: ["localhost:5044"]
+
+# ======================= Kibana Setup ========================
+setup.kibana:
+  host: "http://localhost:5601"
+
+# ======================= Logging Configuration ========================
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: C:/Users/Kishor/Downloads/filebeat/logs
+  name: filebeat.log
+  keepfiles: 7
+  permissions: 0644
